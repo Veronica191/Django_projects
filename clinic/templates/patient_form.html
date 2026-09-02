@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Add Patient | Clinic Management System</title>
+
+<link rel="stylesheet" href="{% static 'clinic/css/style.css' %}">
+```
+
+</head>
+
+<body>
+
+```
+<div class="container">
+
+    <div class="form-card">
+
+        <div class="header">
+            <h1>Add New Patient</h1>
+            <p>Enter the patient's information below</p>
+        </div>
+
+        <!-- Success/Error Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Save Patient</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{% static 'clinic/js/script.js' %}"></script>
+```
+
+</body>
+</html>

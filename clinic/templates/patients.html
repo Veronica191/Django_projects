@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Patients
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Patients</h1>
+
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Insurance ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th>Registration Date</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for patient in patients %}
+
+        <tr>
+
+            <td>{{ patient.patient_insurance }}</td>
+
+            <td>{{ patient.first_name }}</td>
+
+            <td>{{ patient.last_name }}</td>
+
+            <td>{{ patient.date_of_birth }}</td>
+
+            <td>{{ patient.gender }}</td>
+
+            <td>{{ patient.phone }}</td>
+
+            <td>{{ patient.registration_date }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

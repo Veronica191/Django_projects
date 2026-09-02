@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Payments
+
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Payments</h1>
+
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Payment ID</th>
+            <th>Patient Insurance</th>
+            <th>Appointment</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Payment Method</th>
+            <th>Payment Status</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+
+        {% for payment in payments %}
+
+        <tr>
+
+            <td>{{ payment.payment_id }}</td>
+
+            <td>{{ payment.patient_insurance }}</td>
+
+            <td>{{ payment.appointment }}</td>
+
+            <td>{{ payment.amount }}</td>
+
+            <td>{{ payment.payment_date }}</td>
+
+            <td>{{ payment.payment_method }}</td>
+
+            <td>{{ payment.payment_status }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
