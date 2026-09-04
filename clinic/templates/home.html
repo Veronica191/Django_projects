@@ -1,79 +1,176 @@
-{% extends "base.html" %}
-
-
-{% block title %}
-
-Clinic Dashboard
-
-{% endblock %}
-
-
-{% block content %}
-
-<h1>🏥 Clinic Dashboard</h1>
-
-<p>Welcome to the Clinic Management System.</p>
-
-
-<div class="cards">
-
-    <div class="card">
-
-        <h2>👨‍⚕️</h2>
-
-        <h3>Total Patients</h3>
-
-        <h1>{{ total_patients }}</h1>
-
-        <a href="{% url 'patients' %}">
-            View Patients
-        </a>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>📅</h2>
-
-        <h3>Total Appointments</h3>
-
-        <h1>{{ total_appointments }}</h1>
-
-        <a href="{% url 'appointments' %}">
-            View Appointments
-        </a>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>💳</h2>
-
-        <h3>Total Payments</h3>
-
-        <h1>{{ total_payments }}</h1>
-
-        <a href="{% url 'payments' %}">
-            View Payments
-        </a>
-
-    </div>
-
-</div>
-
-<div class="card">
-
-    <h2>💰</h2>
-
-    <h3>Total Revenue</h3>
-
-    <h1>GH₵ {{ total_revenue }}</h1>
-
-    <p>From all payments</p>
-
-</div>
+{% extends "base.html" %} 
  
+ 
+{% block title %} 
+ 
+Clinic Dashboard 
+ 
+{% endblock %} 
+ 
+ 
+{% block content %} 
+ 
+<!-- Dashboard Header --> 
+ 
+<section class="dashboard-header"> 
+ 
+    <div> 
+        <p class="eyebrow">Good to see you, {{ user.username }}</p> 
+        <h1>Clinic dashboard</h1> 
+ 
+        <p> 
+            Manage patients, appointments and payments from here. 
+        </p> 
+    </div> 
+ 
+ 
+    <!-- Add Patient Button --> 
+ 
+    <div> 
+        <a href="{% url 'patient_form' %}"> 
+            <span class="button button-primary">+ Add new patient</span> 
+        </a> 
+        <a class="button button-secondary" href="{% url 'appointment_form' %}">+ New appointment</a>
+        <a class="button button-secondary" href="{% url 'payment_form' %}">+ Record payment</a>
+    </div> 
+ 
+</section> 
+ 
+ 
+<!-- Statistics Cards --> 
+ 
+<section class="cards" aria-label="Clinic statistics"> 
+ 
+ 
+    <!-- Patients --> 
+ 
+    <article class="card card-patients"> 
+ 
+        <h2>👨‍⚕️</h2> 
+ 
+        <h3>Total Patients</h3> 
+ 
+        <h1>{{ total_patients }}</h1> 
+ 
+        <a href="{% url 'patients' %}"> 
+            View Patients 
+        </a> 
+ 
+    </article> 
+ 
+ 
+    <!-- Appointments --> 
+ 
+    <article class="card card-appointments"> 
+ 
+        <h2>📅</h2> 
+ 
+        <h3>Total Appointments</h3> 
+ 
+        <h1>{{ total_appointments }}</h1> 
+ 
+        <a href="{% url 'appointments' %}"> 
+            View Appointments 
+        </a> 
+ 
+    </article> 
+ 
+ 
+    <!-- Payments --> 
+ 
+    <article class="card card-payments"> 
+ 
+        <h2>💳</h2> 
+ 
+        <h3>Total Payments</h3> 
+ 
+        <h1>{{ total_payments }}</h1> 
+ 
+        <a href="{% url 'payments' %}"> 
+            View Payments 
+        </a> 
+ 
+    </article> 
+ 
+ 
+    <!-- Revenue --> 
+ 
+    <article class="card card-revenue"> 
+ 
+        <h2>💰</h2> 
+ 
+        <h3>Total Revenue</h3> 
+ 
+        <h1>GH₵ {{ total_revenue }}</h1> 
+ 
+        <p>From all payments</p> 
+ 
+    </article> 
+ 
+ 
+</section>
 
+
+<!-- Recent Activity -->
+
+<section class="recent-activity">
+
+    <div class="section-header">
+
+        <div>
+            <p class="eyebrow">Latest updates</p>
+            <h2>Recent Activity</h2>
+        </div>
+
+    </div>
+
+
+    {% if recent_activities %}
+
+        <div class="activity-list">
+
+            {% for activity in recent_activities %}
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+
+                        {% if activity.activity_type == 'patient' %}
+                            👤
+                        {% elif activity.activity_type == 'appointment' %}
+                            📅
+                        {% elif activity.activity_type == 'payment' %}
+                            💳
+                        {% elif activity.activity_type == 'completed' %}
+                            ✅
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="activity-details">
+
+                        <p>{{ activity.description }}</p>
+
+                        <small>
+                            {{ activity.created_at|date:"M d, Y - h:i A" }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <p>No recent activity yet.</p>
+
+    {% endif %}
+
+</section>
+ 
+ 
 {% endblock %}

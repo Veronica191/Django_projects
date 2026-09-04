@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+import uuid
 
 
 class Patients(models.Model):
@@ -54,3 +56,22 @@ class Payments(models.Model):
     class Meta:
         managed = False
         db_table = 'payments'
+
+class Activity(models.Model):
+    ACTIVITY_TYPES = [
+        ('patient', 'New Patient'),
+        ('appointment', 'New Appointment'),
+        ('payment', 'Payment Received'),
+        ('completed', 'Appointment Completed'),
+    ]
+
+    activity_type = models.CharField(max_length=20, choices=ACTIVITY_TYPES)
+    description = models.CharField(max_length=255)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        db_table = 'activity'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.description

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Add Patient{% endblock %}
+{% block title %}New Appointment{% endblock %}
 
 {% block content %}
 
 <div class="page-heading">
-    <p class="eyebrow">Patient records</p>
-    <h1>Add new patient</h1>
-    <p>Enter the patient details below to create a new record.</p>
+    <p class="eyebrow">Schedule management</p>
+    <h1>New appointment</h1>
+    <p>Book a visit and keep the care team up to date.</p>
 </div>
 
 <form class="form-card" method="POST">
@@ -23,7 +23,11 @@
     {% endfor %}
 
     {% if form.non_field_errors %}<div class="form-error">{{ form.non_field_errors }}</div>{% endif %}
-    <button class="button button-primary" type="submit">Save patient</button>
+
+    <div class="form-actions">
+        <a class="button button-secondary" href="{% url 'appointments' %}">Cancel</a>
+        <button class="button button-primary" type="submit">Save appointment</button>
+    </div>
 </form>
 
 {% endblock %}

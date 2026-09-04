@@ -10,9 +10,14 @@ Patients
 
 {% block content %}
 
-<h1>Patients</h1>
+<div class="page-heading">
+    <p class="eyebrow">Patient records</p>
+    <h1>Patients</h1>
+    <p>View everyone currently registered with the clinic.</p>
+</div>
 
-
+<div class="table-card">
+<div class="table-scroll">
 <table>
 
     <thead>
@@ -54,10 +59,14 @@ Patients
 
         </tr>
 
+        {% empty %}
+        <tr><td class="empty-state" colspan="7">No patients have been registered yet.</td></tr>
         {% endfor %}
 
     </tbody>
 
 </table>
+</div>
+</div>
 
 {% endblock %}

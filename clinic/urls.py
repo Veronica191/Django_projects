@@ -3,9 +3,14 @@ from . import views
 
 
 urlpatterns = [
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    
     path('', views.home, name='home'),
     path('patients/', views.patients, name='patients'),
     path('appointments/', views.appointments, name='appointments'),
+    path('appointment-form/', views.appointment_form, name='appointment_form'),
     path('payments/', views.payments, name='payments'),
+    path('payment-form/', views.payment_form, name='payment_form'),
     path('patient-form/', views.patient_form, name='patient_form'),
-]
+] 

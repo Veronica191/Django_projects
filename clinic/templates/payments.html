@@ -10,9 +10,15 @@ Payments
 
 {% block content %}
 
-<h1>Payments</h1>
+<div class="page-heading">
+    <p class="eyebrow">Financial overview</p>
+    <h1>Payments</h1>
+    <p>Review payment activity and transaction status.</p>
+    <a class="button button-primary page-heading-action" href="{% url 'payment_form' %}">+ Record payment</a>
+</div>
 
-
+<div class="table-card">
+<div class="table-scroll">
 <table>
 
     <thead>
@@ -50,14 +56,18 @@ Payments
 
             <td>{{ payment.payment_method }}</td>
 
-            <td>{{ payment.payment_status }}</td>
+            <td><span class="status-badge">{{ payment.payment_status }}</span></td>
 
         </tr>
 
+        {% empty %}
+        <tr><td class="empty-state" colspan="7">No payment records are available.</td></tr>
         {% endfor %}
 
     </tbody>
 
 </table>
+</div>
+</div>
 
 {% endblock %}
