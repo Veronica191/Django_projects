@@ -3,14 +3,30 @@ from django.utils import timezone
 import uuid
 
 
+
 class Patients(models.Model):
     patient_insurance = models.AutoField(primary_key=True)
+
+    patient_uuid = models.CharField(
+        max_length=36,
+        unique=True,
+        default=lambda: str(uuid.uuid4()),
+        editable=False
+    )
+    
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=10)
     phone = models.CharField(max_length=20)
     registration_date = models.DateField()
+
+    @property
+    def patient_code(self):
+        """Return the short, human-friendly code for this patient."""
+        if self.patient_insurance is None:
+            return ''
+        return f'GH{self.patient_insurance}'
 
     class Meta:
         managed = False

@@ -46,7 +46,7 @@ Clinic Dashboard
  
     <article class="card card-patients"> 
  
-        <h2>👨‍⚕️</h2> 
+        
  
         <h3>Total Patients</h3> 
  
@@ -63,7 +63,7 @@ Clinic Dashboard
  
     <article class="card card-appointments"> 
  
-        <h2>📅</h2> 
+
  
         <h3>Total Appointments</h3> 
  
@@ -80,7 +80,7 @@ Clinic Dashboard
  
     <article class="card card-payments"> 
  
-        <h2>💳</h2> 
+        
  
         <h3>Total Payments</h3> 
  
@@ -97,7 +97,7 @@ Clinic Dashboard
  
     <article class="card card-revenue"> 
  
-        <h2>💰</h2> 
+        
  
         <h3>Total Revenue</h3> 
  
@@ -136,13 +136,13 @@ Clinic Dashboard
                     <div class="activity-icon">
 
                         {% if activity.activity_type == 'patient' %}
-                            👤
+                            
                         {% elif activity.activity_type == 'appointment' %}
-                            📅
+                            
                         {% elif activity.activity_type == 'payment' %}
-                            💳
+                            
                         {% elif activity.activity_type == 'completed' %}
-                            ✅
+                            
                         {% endif %}
 
                     </div>

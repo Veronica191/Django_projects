@@ -133,7 +133,7 @@ class AppointmentForm(forms.ModelForm):
 
     @staticmethod
     def patient_label(patient):
-        return f'{patient.first_name} {patient.last_name} — ID {patient.patient_insurance}'
+            return f'{patient.first_name} {patient.last_name} — {patient.patient_code}'
 
 class PaymentForm(forms.ModelForm):
 
@@ -212,7 +212,7 @@ class PaymentForm(forms.ModelForm):
 
     @staticmethod
     def patient_label(patient):
-        return f'{patient.first_name} {patient.last_name} — ID {patient.patient_insurance}'
+        return f'{patient.first_name} {patient.last_name} — {patient.patient_code}'
 
     @staticmethod
     def appointment_label(appointment):

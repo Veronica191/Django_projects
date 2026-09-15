@@ -5,6 +5,8 @@ from .forms import AppointmentForm, PatientForm, PaymentForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+
 
 
 def login_view(request):
@@ -26,6 +28,7 @@ def login_view(request):
     return render(request, 'login.html')
 
 
+@never_cache
 @login_required
 def home(request):
 
@@ -51,7 +54,8 @@ def home(request):
 
     return render(request, 'home.html', context)
 
-
+@never_cache
+@login_required
 def patients(request):
 
     patients = Patients.objects.all()
@@ -60,7 +64,8 @@ def patients(request):
         'patients': patients
     })
 
-
+@never_cache
+@login_required
 def appointments(request):
 
     appointments = Appointments.objects.all()
@@ -70,6 +75,7 @@ def appointments(request):
     })
 
 
+@never_cache
 @login_required
 def appointment_form(request):
 
@@ -110,6 +116,7 @@ def appointment_form(request):
     )
 
 
+@never_cache
 @login_required
 def payments(request):
 
@@ -120,6 +127,8 @@ def payments(request):
     })
 
 
+@never_cache
+@login_required
 def patient_form(request):
 
     if request.method == "POST":

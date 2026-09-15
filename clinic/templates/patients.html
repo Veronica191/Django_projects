@@ -25,6 +25,7 @@ Patients
         <tr>
 
             <th>Insurance ID</th>
+            <th>Patient Code</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Date of Birth</th>
@@ -45,6 +46,8 @@ Patients
 
             <td>{{ patient.patient_insurance }}</td>
 
+            <td>{{ patient.patient_code }}</td>
+
             <td>{{ patient.first_name }}</td>
 
             <td>{{ patient.last_name }}</td>
@@ -60,7 +63,7 @@ Patients
         </tr>
 
         {% empty %}
-        <tr><td class="empty-state" colspan="7">No patients have been registered yet.</td></tr>
+        <tr><td class="empty-state" colspan="8">No patients have been registered yet.</td></tr>
         {% endfor %}
 
     </tbody>
